@@ -5,7 +5,7 @@
 
 void push(int* stack, int value, int* top, int size); // Adding "value" element at the top of the stack
 void pop(int* stack, int* top);                       // Removing the top element of the stack
-void display(int* stack, int* top);                   // Display current status of the stack
+void display(int* stack, int top);                    // Display current status of the stack
 
 
 int main() {
@@ -32,13 +32,13 @@ int main() {
         printf("Give an integer value to be stored in the stack: ");
         scanf("%d", &value);
         push(stack, value, &top, size);
-        display(stack, &top);
+        display(stack, top);
         break;
       }
       case 2: {
         printf("Popping..\n");
         pop(stack, &top);
-        display(stack, &top);
+        display(stack, top);
         break;
       }
       case 3: {
@@ -71,8 +71,8 @@ void pop(int* stack, int* top) {
   }
 }
 
-void display(int* stack, int* top){
-  for (int ii=-1; ii<(*top); ++ii) {
+void display(int* stack, int top){
+  for (int ii=-1; ii<top; ++ii) {
     printf("%d ", stack[ii+1]);
   }
   printf("\n");
