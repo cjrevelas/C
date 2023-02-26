@@ -55,7 +55,7 @@ int main() {
 }
 
 void push(int* stack, int value, int* top, int size) {
-  if (*top == size) {
+  if (*top == size-1) {
     printf("ERROR: stack overflow! Need to POP a value to continue properly!\n");
   } else {
     (*top)++;
