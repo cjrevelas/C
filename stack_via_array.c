@@ -18,7 +18,7 @@ int main() {
   printf("-----------------------------------------------------\n");
   printf("Operation 1: Push new element to the stack\n");
   printf("Operation 2: Pop element from stack\n");
-  printf("Operation 3: Display current status of the stack\n");
+  printf("Operation 3: Terminate code execution\n");
   printf("-----------------------------------------------------\n");
 
   printf("Caution: The capacity of the stack is %d elements!\n\n", size);
