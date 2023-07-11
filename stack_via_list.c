@@ -13,7 +13,6 @@ struct Node* push(struct Node* headNode, int value); // Adding new node at the t
 struct Node* pop(struct Node* headNode);             // Removing the top node of the stack
 void display(struct Node* headNode);                 // Display current status of the stack
 
-
 int main() {
   int operation;
   int value;
@@ -25,7 +24,7 @@ int main() {
   printf("-----------------------------------------------------\n");
 
   // Initialize stack/list here
-  struct Node* headNode   = NULL;
+  struct Node* headNode = NULL;
 
   while (operation != 3) {
     printf("Select operation to be performed on the stack: ");
@@ -91,11 +90,11 @@ struct Node* pop(struct Node* headNode) {
     printf("ERROR: stack underflow!\n");
   }
   else if (headNode->next_ == NULL) { // we need an addition special case when we have to pop the headNode (and therefore headNode->next_ == NULL)
+    printf("so far so good..\n");
     free(headNode->next_);
     headNode = NULL;
   }
   else {
-
     tempNode     = headNode;
     tempNodeNext = headNode->next_;
 

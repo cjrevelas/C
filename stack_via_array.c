@@ -1,4 +1,4 @@
-// This code will implement a stack of integer
+// This code will implement a LIFO stack of integer
 // values using an array.
 
 #include <stdio.h>
@@ -7,11 +7,13 @@ void push(int* stack, int value, int* top, int size); // Adding "value" element 
 void pop(int* stack, int* top);                       // Removing the top element of the stack
 void display(int* stack, int top);                    // Display current status of the stack
 
-
 int main() {
   int size = 10;
-  int stack[size];
+
+  int stack[size]; // The stack is implemented as a static array of "size" in number integers
+
   int top = -1; // Corresponds to empty stack
+
   int operation;
   int value;
 
@@ -54,8 +56,9 @@ int main() {
   return 0;
 }
 
+// Push a new element on top of the stack
 void push(int* stack, int value, int* top, int size) {
-  if (*top == size-1) {
+  if ((*top) == size-1) {
     printf("ERROR: stack overflow! Need to POP a value to continue properly!\n");
   } else {
     (*top)++;
@@ -64,7 +67,7 @@ void push(int* stack, int value, int* top, int size) {
 }
 
 void pop(int* stack, int* top) {
-  if (*top == -1) {
+  if ((*top) == -1) {
     printf("ERROR: stack underflow! Need to push a value to continue properly!\n");
   } else {
     (*top)--;
