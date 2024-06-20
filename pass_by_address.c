@@ -1,10 +1,12 @@
+#include <stdio.h>
+
 void addTwo(int k);
 
 int main() {
 
   int x = 5;
 
-  int* y = &x; // Pointer declaration and initialization
+  int *y = &x; // Pointer declaration and initialization
 
   printf("The value of x is: %d\n", x);
   printf("The value of x is: %d\n\n", *y);
@@ -27,12 +29,12 @@ void addTwo(int k) { // This creates a new variable k and just gives it the valu
   printf("Getting out of the function and returning to main.\n");
 }
 
-void addTwoNew(int* y) {  // Reminder: asterisk here is used for pointer declaration
+void addTwoNew(int *y) {  // Reminder: asterisk here is used for pointer declaration
   *y = *y + 2;            // Reminder: asterisk here is used for pointer dereferencing
 }
 
 
-// Dereferencing of the pointer
+// Pointer dereferencing
 //int z = *y; // equivalent to: int z = 5;  (this is pointer dereferencing)
 
-//int* z = y; // equivalent to: int* z = &x; (this is pointer declaration)
+//int *z = y; // equivalent to: int* z = &x; (this is pointer declaration)

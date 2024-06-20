@@ -5,7 +5,7 @@ struct Employee {
   float wage;
 };
 
-void function(struct Employee* employee);
+void function(struct Employee *employee);
 
 int main() {
   int x;

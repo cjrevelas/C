@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 // Defining here a struct to store the data of each student
 struct Student {
   char index_[15];
@@ -15,22 +14,19 @@ struct Student {
   char course_[];
 };
 
-
 // Defining here a linked list of students
 struct Node {
-  struct Student* student_; // The item of each node of the list is the address of a student
-  struct Node* next_;       // Points to the node which finds itself next to the current node
+  struct Student *student_; // The item of each node of the list is the address of a student
+  struct Node *next_;       // Points to the node which finds itself next to the current node
 };
-
 
 // Forward declarations
 void readStudentData(struct Student *student);
 void printStudentData(struct Student *student);
 
-struct Node* createNewNode(struct Node* studentList, struct Student* student);
+struct Node *createNewNode(struct Node *studentList, struct Student *student);
 
-void display(struct Node* headNode);
-
+void display(struct Node *headNode);
 
 int main() {
   int numberOfStudents;
@@ -39,10 +35,10 @@ int main() {
   scanf("%d", &numberOfStudents);
 
   // Dynamic allocation of student array
-  struct Student* studentArray = (struct Student*)malloc(sizeof(struct Student) * numberOfStudents);
+  struct Student *studentArray = (struct Student *)malloc(sizeof(struct Student) * numberOfStudents);
 
   // Create an instance of the list here
-  struct Node* studentList = NULL;// we can think of this as being the head of the list
+  struct Node *studentList = NULL; // We can think of this as being the head of the list
 
   for (int ii=0; ii<numberOfStudents; ++ii) {
     readStudentData(&studentArray[ii]);
@@ -67,7 +63,6 @@ int main() {
 
   return 0;
 }
-
 
 struct Node* createNewNode(struct Node* headNode, struct Student* student) {
   struct Node* newNode;
@@ -119,7 +114,6 @@ void readStudentData(struct Student *student) {
   printf("\n");
 }
 
-
 void printStudentData(struct Student *student) {
   printf("---------------------------\n");
   printf("Printing data of student %s below:\n\n", student->index_);
@@ -132,8 +126,7 @@ void printStudentData(struct Student *student) {
   printf("Course: %s\n", student->course_);
 }
 
-
-void display(struct Node* headNode){
+void display(struct Node *headNode){
   if (headNode == NULL) {
     printf("Empty list\n");
   }
