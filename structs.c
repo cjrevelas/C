@@ -22,16 +22,13 @@ int main() {
   printf("Please give the age of employee 2: ");
   scanf("%d", &employee2.age);
 
-  //printf("employee 1 is %d years old\n", employee1.age);
-
-
   printf("Printing age of employee 2:\n");
   function(&employee2);
 
   return 0;
 }
 
-void function(struct Employee* employee) { // struct Employee* employee = &employee1
+void function(struct Employee* employee) { // struct Employee *employee = &employee1
   printf("employee 2 is %d years old\n", (*employee).age);
   printf("employee 2 is %d years old\n",  employee->age); // arrow operator
 }
