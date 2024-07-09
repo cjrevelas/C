@@ -18,7 +18,7 @@ void popNumber(int* stackOfNumbers, int* topNumberIndex) {
   }
 }
 
-void displayStackOfNumbers(int* stackOfNumbers, int topNumberIndex){
+void displayStackOfNumbers(int* stackOfNumbers, int topNumberIndex) {
   for (int jj=-1; jj<topNumberIndex; ++jj) {
     printf("%d ", stackOfNumbers[jj+1]);
   }
