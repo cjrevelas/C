@@ -45,7 +45,8 @@ void modify_array(int array[]) {
 }
 
 int sum_of_array_elements(int array[]) {
-  int sum_of_array;
+  int sum_of_array = 0;
+
   for (int i = 0; i<5; ++i) {
     sum_of_array += array[i];
   }
