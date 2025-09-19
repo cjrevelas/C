@@ -23,12 +23,13 @@ struct Node {
 // Forward declarations
 void readStudentData(struct Student *student);
 void printStudentData(struct Student *student);
+void display(struct Node *headNode);
 
 struct Node *createNewNode(struct Node *studentList, struct Student *student);
 
-void display(struct Node *headNode);
 
-int main() {
+int main()
+{
   int numberOfStudents;
 
   printf("Please specify the number of students: ");
@@ -40,17 +41,20 @@ int main() {
   // Create an instance of the list here
   struct Node *studentList = NULL; // We can think of this as being the head of the list
 
-  for (int ii=0; ii<numberOfStudents; ++ii) {
+  for (int ii=0; ii<numberOfStudents; ++ii)
+  {
     readStudentData(&studentArray[ii]);
 
-    if (!strcmp(studentArray[ii].course_, "python")) {
+    if (!strcmp(studentArray[ii].course_, "python"))
+    {
       studentList = createNewNode(studentList, &studentArray[ii]);
     }
   }
 
   //printf("studentList address is %p\n", studentList); // Keep this line for debugging
 
-  for (int ii=0; ii<numberOfStudents; ++ii) {
+  for (int ii=0; ii<numberOfStudents; ++ii)
+  {
     printStudentData(&studentArray[ii]);
   }
 
@@ -64,23 +68,28 @@ int main() {
   return 0;
 }
 
-struct Node* createNewNode(struct Node* headNode, struct Student* student) {
-  struct Node* newNode;
-  struct Node* tempNode;
+struct Node *createNewNode(struct Node *headNode, struct Student *student)
+{
+  struct Node *newNode;
+  struct Node *tempNode;
 
   // Allocate memory for the new node of the list
-  newNode = (struct Node*)malloc(sizeof(struct Node));
+  newNode = (struct Node *)malloc(sizeof(struct Node));
   newNode->student_ = student;
   newNode->next_    = NULL;
 
   // printf("newNode address is %p\n", newNode); // Keep this line for debugging
 
-  if (headNode == NULL) { // Case of empty list
+  if (headNode == NULL)
+  { // Case of empty list
     headNode = newNode;
-  } else {                // Case of non-empty list
+  }
+  else
+  { // Case of non-empty list
     tempNode = headNode;  // Assign tempNode to head to start traversing the list
 
-    while(tempNode->next_ != NULL) {
+    while(tempNode->next_ != NULL)
+    {
       tempNode = tempNode->next_; // Traverse the list until tempNode is the last node (last node always points to NULL)
     }
 
@@ -94,7 +103,8 @@ struct Node* createNewNode(struct Node* headNode, struct Student* student) {
 }
 
 
-void readStudentData(struct Student *student) {
+void readStudentData(struct Student *student)
+{
   printf("Insert index of new student: ");
   scanf("%s", student->index_);
   printf("Insert name of new student: ");
@@ -114,7 +124,8 @@ void readStudentData(struct Student *student) {
   printf("\n");
 }
 
-void printStudentData(struct Student *student) {
+void printStudentData(struct Student *student)
+{
   printf("---------------------------\n");
   printf("Printing data of student %s below:\n\n", student->index_);
   printf("Name: %s\n", student->name_);
@@ -126,12 +137,15 @@ void printStudentData(struct Student *student) {
   printf("Course: %s\n", student->course_);
 }
 
-void display(struct Node *headNode){
-  if (headNode == NULL) {
+void display(struct Node *headNode)
+{
+  if (headNode == NULL)
+  {
     printf("Empty list\n");
   }
 
-  while (headNode != NULL) {
+  while (headNode != NULL)
+  {
     printf("%s  ", headNode->student_->name_);
     headNode = headNode->next_;
   }
