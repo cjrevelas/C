@@ -27,7 +27,6 @@ void display(struct Node *headNode);
 
 struct Node *createNewNode(struct Node *studentList, struct Student *student);
 
-
 int main()
 {
   int numberOfStudents;
@@ -122,6 +121,8 @@ void readStudentData(struct Student *student)
   printf("Insert course selected by the new student: ");
   scanf("%s", student->course_);
   printf("\n");
+
+  return;
 }
 
 void printStudentData(struct Student *student)
@@ -135,6 +136,8 @@ void printStudentData(struct Student *student)
   printf("Home number: %s\n", student->homeNumber_);
   printf("Mobile number: %s\n", student->mobileNumber_);
   printf("Course: %s\n", student->course_);
+
+  return;
 }
 
 void display(struct Node *headNode)
@@ -151,4 +154,6 @@ void display(struct Node *headNode)
   }
 
   printf("\n");
+
+  return;
 }
