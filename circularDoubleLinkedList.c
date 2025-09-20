@@ -10,13 +10,18 @@ struct Node {
   struct Node *prev;
 };
 
+struct Node *head;
+struct Node *tail;
+
 void createFirstNode( struct Node **node, int value );
+void pushNodeFront( int value );
+void pushNodeBack( int value );
 
 int main()
 {
   depth = 0;
-  struct Node *head = (struct Node *)malloc( sizeof( struct Node ) );
-  createFirstNode( &head, 1 );
+  struct Node *node = (struct Node *)malloc( sizeof( struct Node ) );
+  createFirstNode( &node, 10 );
 
   return 0;
 }
@@ -28,9 +33,30 @@ void createFirstNode( struct Node **node, int value )
   (*node)->next = *node; // Points at itself
   (*node)->prev = *node; // Points at itself
 
-  printf( "List depth = %u\n", depth );
-  printf( "Node id: %x -> { %d, %x, %x }\n", *node, (*node)->data, (*node)->next, (*node)->prev );
+  //
+  // Update head and tail pointers
+  //
+  head = *node;
+  tail = *node;
 
+  printf( "List depth = %u\n", depth );
+  printf( "\nNode id: %x -> { %d, %x, %x }\n", *node, (*node)->data, (*node)->next, (*node)->prev );
+  printf( "\nHead: %x, Tail: %x\n", head, tail );
+  printf( "\nList status:\n" );
+  
+  for (int i=0; i<depth; ++i)
+  {
+    printf( "%x  %d\n", *node, (*node)->data );
+    (*node)=(*node)->next;
+  }
 
   return;
+}
+
+void pushNodeFront( int value )
+{
+}
+
+void pushNodeBack(int value )
+{
 }
