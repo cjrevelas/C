@@ -13,44 +13,42 @@ struct Node {
   struct Node *prev;
 };
 
-struct Node *head;
-struct Node *tail;
-
 
 // Forward function declarations
-void createFirstNode( struct Node **node, int value );
-void pushNodeFront( int value );
-void pushNodeBack( int value );
-void printList( );
-void printListReversed( );
+void createFirstNode( struct Node **head, struct Node ** tail, int value );
+void pushNodeFront( struct Node **head, struct Node **tail, int value );
+void pushNodeBack( struct Node **head, struct Node **tail, int value );
+void printList( struct Node *head );
+void printListReversed( struct Node *tail );
 
 
 //Function implementations
 int main()
 {
   depth = 0;
-  struct Node *node = (struct Node *)malloc( sizeof( struct Node ) );
-  createFirstNode( &node, 10 );
-  printList();
+  struct Node *head = (struct Node *)malloc( sizeof( struct Node ) );
+  struct Node *tail = (struct Node *)malloc( sizeof( struct Node ) );
+  createFirstNode( &head, &tail, 10 );
+  printList( head );
 
   printf( "--------------------------------------------------------------------\n" );
-  pushNodeFront(20);
-  printList();
+  pushNodeFront( &head, &tail, 20 );
+  printList( head );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
 
   printf( "--------------------------------------------------------------------\n" );
-  pushNodeBack(30);
-  printList();
+  pushNodeBack( &head, &tail, 30 );
+  printList( head );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
 
   printf( "--------------------------------------------------------------------\n" );
-  pushNodeFront(50);
-  printList();
+  pushNodeFront( &head, &tail, 50 );
+  printList( head );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
 
   printf( "--------------------------------------------------------------------\n" );
-  pushNodeBack(80);
-  printList();
+  pushNodeBack (&head, &tail, 80 );
+  printList( head );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
   printf( "--------------------------------------------------------------------\n" );
 
@@ -58,97 +56,88 @@ int main()
   printf( "tail->prev: %x, tail->next: %x\n", tail->prev, tail->next );
   printf( "--------------------------------------------------------------------\n" );
 
-  printListReversed();
+  printListReversed( tail );
 
   return 0;
 }
 
 
-void createFirstNode( struct Node **node, int value )
+void createFirstNode( struct Node **head, struct Node **tail, int value )
 {
   ++depth;
 
-  (*node)->data = value;
-  (*node)->next = *node; // Points at itself
-  (*node)->prev = *node; // Points at itself
+  (*head)->data = value;
+  (*head)->next = *head; // Points at itself
+  (*head)->prev = *head; // Points at itself
 
   //
-  // Update head and tail pointers
+  // Since only one node exists at this point, head and tail are the same
   //
-  head = *node;
-  tail = *node;
+  *tail = *head;
 
   printf( "\n--------------------------------------------------------------------\n" );
   printf( "List depth = %u\n", depth );
-  printf( "\nNode id: %x -> { %d, %x, %x }\n", *node, (*node)->data, (*node)->next, (*node)->prev );
-  printf( "\nHead: %x, Tail: %x\n", head, tail );
+  printf( "\nNode id: %x -> { %d, %x, %x }\n", *head, (*head)->data, (*head)->next, (*head)->prev );
+  printf( "\nHead: %x, Tail: %x\n", *head, *tail );
   printf( "\nList status:\n" );
 
   return;
 }
 
 
-void pushNodeFront( int value )
+void pushNodeFront( struct Node **head, struct Node **tail, int value )
 {
   ++depth;
 
   struct Node *newNode = (struct Node *)malloc(sizeof (struct Node) );
 
-  newNode->prev = tail;
-  newNode->next = head;
+  newNode->prev = *tail;
+  newNode->next = *head;
   newNode->data = value;
 
-  head->prev = newNode;
-  tail->next = newNode;
+  (*head)->prev = newNode;
+  (*tail)->next = newNode;
 
-  head = newNode;
+  *head = newNode;
 }
 
 
-void pushNodeBack( int value )
+void pushNodeBack( struct Node **head, struct Node **tail, int value )
 {
   ++depth;
 
   struct Node *newNode = (struct Node *)malloc(sizeof (struct Node) );
 
-  newNode->prev = tail;
-  newNode->next = head;
+  newNode->prev = *tail;
+  newNode->next = *head;
   newNode->data = value;
 
-  head->prev = newNode;
-  tail->next = newNode;
+  (*head)->prev = newNode;
+  (*tail)->next = newNode;
 
-  tail = newNode;
+  *tail = newNode;
 }
 
 
-void printList( )
+void printList( struct Node *head )
 {
-  struct Node *tempNode = (struct Node *)malloc( sizeof( struct Node ) );
-
-  tempNode = head;
-
   for (int i=0; i<depth; ++i)
   {
-    printf( "%x %d\n", tempNode, tempNode->data );
+    printf( "%x %d\n", head, head->data );
 
-    tempNode = tempNode->next;
+    head = head->next;
   }
 
   return;
 }
 
-void printListReversed( )
+void printListReversed( struct Node *tail )
 {
-  struct Node *tempNode = (struct Node *)malloc( sizeof( struct Node ) );
-
-  tempNode = tail;
-
   for (int i=0; i<depth; ++i)
   {
-    printf( "%x %d\n", tempNode, tempNode->data );
+    printf( "%x %d\n", tail, tail->data );
 
-    tempNode = tempNode->prev;
+    tail = tail->prev;
   }
 
   return;
