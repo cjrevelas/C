@@ -28,6 +28,9 @@ int main()
   depth = 0;
   struct Node *head = (struct Node *)malloc( sizeof( struct Node ) );
   struct Node *tail = (struct Node *)malloc( sizeof( struct Node ) );
+
+  printf( "\n&Head: %x, &Tail %x", &head, &tail );
+
   createFirstNode( &head, &tail, 10 );
   printList( head );
 
@@ -79,6 +82,7 @@ void createFirstNode( struct Node **head, struct Node **tail, int value )
   printf( "List depth = %u\n", depth );
   printf( "\nNode id: %x -> { %d, %x, %x }\n", *head, (*head)->data, (*head)->next, (*head)->prev );
   printf( "\nHead: %x, Tail: %x\n", *head, *tail );
+  printf( "&Head: %x, &Tail %x\n", head, tail ); 
   printf( "\nList status:\n" );
 
   return;
