@@ -1,7 +1,10 @@
+// Headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
 
+
+// Data declarations
 static unsigned int depth;
 
 struct Node {
@@ -13,22 +16,36 @@ struct Node {
 struct Node *head;
 struct Node *tail;
 
+
+// Forward function declarations
 void createFirstNode( struct Node **node, int value );
 void pushNodeFront( int value );
 void pushNodeBack( int value );
+void printList( );
+void printListReversed( );
 
+
+//Function implementations
 int main()
 {
   depth = 0;
   struct Node *node = (struct Node *)malloc( sizeof( struct Node ) );
   createFirstNode( &node, 10 );
 
+  printf( "\n--------------------------------------------------------------------\n" );
+  pushNodeFront(20);
+  printList();
+  printf( "\nHead: %x, Tail: %x\n", head, tail );
+  printf( "\n--------------------------------------------------------------------\n" );
+
   return 0;
 }
+
 
 void createFirstNode( struct Node **node, int value )
 {
   ++depth;
+
   (*node)->data = value;
   (*node)->next = *node; // Points at itself
   (*node)->prev = *node; // Points at itself
@@ -39,19 +56,34 @@ void createFirstNode( struct Node **node, int value )
   head = *node;
   tail = *node;
 
+  printf( "\n--------------------------------------------------------------------\n\n" );
   printf( "List depth = %u\n", depth );
   printf( "\nNode id: %x -> { %d, %x, %x }\n", *node, (*node)->data, (*node)->next, (*node)->prev );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
   printf( "\nList status:\n" );
+  printList();
   
+
+  return;
+}
+
+
+void printList( )
+{
+  struct Node *tempNode = (struct Node *)malloc( sizeof( struct Node ) );
+
+  tempNode = head;
+
   for (int i=0; i<depth; ++i)
   {
-    printf( "%x  %d\n", *node, (*node)->data );
-    (*node)=(*node)->next;
+    printf( "%x %d\n", tempNode, tempNode->data );  
+
+    tempNode = tempNode->next;
   }
 
   return;
 }
+
 
 void pushNodeFront( int value )
 {
@@ -61,6 +93,7 @@ void pushNodeFront( int value )
   
   newNode->prev = tail;
   newNode->next = head;
+  newNode->data = value;
 
   head->prev = newNode;
   tail->next = newNode;
