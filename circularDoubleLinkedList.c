@@ -58,6 +58,8 @@ int main()
   printf( "tail->prev: %x, tail->next: %x\n", tail->prev, tail->next );
   printf( "--------------------------------------------------------------------\n" );
 
+  printListReversed();
+
   return 0;
 }
 
@@ -81,23 +83,6 @@ void createFirstNode( struct Node **node, int value )
   printf( "\nNode id: %x -> { %d, %x, %x }\n", *node, (*node)->data, (*node)->next, (*node)->prev );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
   printf( "\nList status:\n" );
-
-  return;
-}
-
-
-void printList( )
-{
-  struct Node *tempNode = (struct Node *)malloc( sizeof( struct Node ) );
-
-  tempNode = head;
-
-  for (int i=0; i<depth; ++i)
-  {
-    printf( "%x %d\n", tempNode, tempNode->data );
-
-    tempNode = tempNode->next;
-  }
 
   return;
 }
@@ -134,4 +119,37 @@ void pushNodeBack( int value )
   tail->next = newNode;
 
   tail = newNode;
+}
+
+
+void printList( )
+{
+  struct Node *tempNode = (struct Node *)malloc( sizeof( struct Node ) );
+
+  tempNode = head;
+
+  for (int i=0; i<depth; ++i)
+  {
+    printf( "%x %d\n", tempNode, tempNode->data );
+
+    tempNode = tempNode->next;
+  }
+
+  return;
+}
+
+void printListReversed( )
+{
+  struct Node *tempNode = (struct Node *)malloc( sizeof( struct Node ) );
+
+  tempNode = tail;
+
+  for (int i=0; i<depth; ++i)
+  {
+    printf( "%x %d\n", tempNode, tempNode->data );
+
+    tempNode = tempNode->prev;
+  }
+
+  return;
 }
