@@ -55,7 +55,19 @@ void createFirstNode( struct Node **node, int value )
 
 void pushNodeFront( int value )
 {
+  ++depth;
+
+  struct Node *newNode = (struct Node *)malloc(sizeof (struct Node) );
+  
+  newNode->prev = tail;
+  newNode->next = head;
+
+  head->prev = newNode;
+  tail->next = newNode;
+
+  head = newNode;
 }
+
 
 void pushNodeBack(int value )
 {
