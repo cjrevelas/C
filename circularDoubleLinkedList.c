@@ -18,6 +18,7 @@ struct Node {
 void createFirstNode( struct Node **head, struct Node ** tail, int value );
 void pushNodeFront( struct Node **head, struct Node **tail, int value );
 void pushNodeBack( struct Node **head, struct Node **tail, int value );
+void insertAfterNode( struct Node **head, int data, int newData );
 void printList( struct Node *head );
 void printListReversed( struct Node *tail );
 
@@ -61,6 +62,13 @@ int main()
 
   printListReversed( tail );
 
+  printf( "--------------------------------------------------------------------\n" );
+  insertAfterNode (&head, 10, 120 );
+  printList( head );
+  printf( "\nHead: %x, Tail: %x\n", head, tail );
+  printf( "--------------------------------------------------------------------\n" );
+
+  printListReversed( tail );
   return 0;
 }
 
@@ -120,6 +128,41 @@ void pushNodeBack( struct Node **head, struct Node **tail, int value )
   (*tail)->next = newNode;
 
   *tail = newNode;
+}
+
+
+void insertAfterNode( struct Node **head, int data, int newData )
+{
+  ++depth;
+
+  struct Node *newNode  = (struct Node *)malloc( sizeof( struct Node ) );
+  struct Node *tempNode = *head;
+
+  int value;
+
+  do
+  {
+    value = tempNode->data;
+
+    if ( value == data )
+    {
+      newNode->next = tempNode->next;
+      newNode->prev = tempNode;
+      newNode->data = newData;
+
+      tempNode->next->prev = newNode;
+      tempNode->next       = newNode;
+
+      return;
+    }
+    else
+    {
+    tempNode = tempNode->next;
+    }
+
+  } while( tempNode != *head );
+
+  printf("The value: %d is not in the list\n", data);
 }
 
 
