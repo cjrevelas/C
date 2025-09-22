@@ -18,7 +18,7 @@ struct Node {
 void createFirstNode( struct Node **head, struct Node ** tail, int value );
 void pushNodeFront( struct Node **head, struct Node **tail, int value );
 void pushNodeBack( struct Node **head, struct Node **tail, int value );
-void insertAfterNode( struct Node **head, int data, int newData );
+void insertAfterNode( struct Node **head, struct Node **tail, int data, int newData );
 void printList( struct Node *head );
 void printListReversed( struct Node *tail );
 
@@ -63,9 +63,13 @@ int main()
   printListReversed( tail );
 
   printf( "--------------------------------------------------------------------\n" );
-  insertAfterNode (&head, 10, 120 );
+  insertAfterNode (&head, &tail, 80, 120 );
   printList( head );
   printf( "\nHead: %x, Tail: %x\n", head, tail );
+  printf( "--------------------------------------------------------------------\n" );
+
+  printf( "head->prev: %x, head->next: %x\n", head->prev, head->next );
+  printf( "tail->prev: %x, tail->next: %x\n", tail->prev, tail->next );
   printf( "--------------------------------------------------------------------\n" );
 
   printListReversed( tail );
@@ -131,7 +135,7 @@ void pushNodeBack( struct Node **head, struct Node **tail, int value )
 }
 
 
-void insertAfterNode( struct Node **head, int data, int newData )
+void insertAfterNode( struct Node **head, struct Node **tail, int data, int newData )
 {
   ++depth;
 
@@ -152,6 +156,15 @@ void insertAfterNode( struct Node **head, int data, int newData )
 
       tempNode->next->prev = newNode;
       tempNode->next       = newNode;
+
+      //
+      // If tempNode is the tail, i.e., head->prev, then
+      // we need to update it as well.
+      //
+      if ( tempNode == (*tail) )
+      {
+        (*tail) = newNode;
+      }
 
       return;
     }
