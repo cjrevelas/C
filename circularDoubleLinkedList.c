@@ -82,7 +82,7 @@ void createFirstNode( struct Node **head, struct Node **tail, int value )
   printf( "List depth = %u\n", depth );
   printf( "\nNode id: %x -> { %d, %x, %x }\n", *head, (*head)->data, (*head)->next, (*head)->prev );
   printf( "\nHead: %x, Tail: %x\n", *head, *tail );
-  printf( "&Head: %x, &Tail %x\n", head, tail ); 
+  printf( "&Head: %x, &Tail %x\n", head, tail );
   printf( "\nList status:\n" );
 
   return;
@@ -125,24 +125,30 @@ void pushNodeBack( struct Node **head, struct Node **tail, int value )
 
 void printList( struct Node *head )
 {
-  for (int i=0; i<depth; ++i)
-  {
-    printf( "%x %d\n", head, head->data );
+  struct Node *auxNode = (struct Node *)malloc( sizeof( struct Node ) );
+  auxNode = head;
 
-    head = head->next;
-  }
+  do
+  {
+    printf( "%x %d\n", auxNode, auxNode->data );
+
+    auxNode = auxNode->next;
+  } while ( auxNode != head );
 
   return;
 }
 
 void printListReversed( struct Node *tail )
 {
-  for (int i=0; i<depth; ++i)
-  {
-    printf( "%x %d\n", tail, tail->data );
+  struct Node *auxNode = (struct Node *)malloc( sizeof( struct Node ) );
+  auxNode = tail;
 
-    tail = tail->prev;
-  }
+  do
+  {
+    printf( "%x %d\n", auxNode, auxNode->data );
+
+    auxNode = auxNode->prev;
+  } while ( auxNode != tail );
 
   return;
 }
