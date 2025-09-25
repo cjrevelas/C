@@ -181,8 +181,7 @@ void insertAfterNode( struct Node **head, struct Node **tail, int data, int newD
 
 void printList( struct Node *head )
 {
-  struct Node *auxNode = (struct Node *)malloc( sizeof( struct Node ) );
-  auxNode = head;
+  struct Node *auxNode = head;
 
   do
   {
@@ -196,8 +195,7 @@ void printList( struct Node *head )
 
 void printListReversed( struct Node *tail )
 {
-  struct Node *auxNode = (struct Node *)malloc( sizeof( struct Node ) );
-  auxNode = tail;
+  struct Node *auxNode = tail;
 
   do
   {
