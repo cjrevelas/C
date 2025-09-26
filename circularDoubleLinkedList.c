@@ -19,6 +19,7 @@ void createFirstNode( struct Node **head, struct Node ** tail, int value );
 void pushNodeFront( struct Node **head, struct Node **tail, int value );
 void pushNodeBack( struct Node **head, struct Node **tail, int value );
 void insertAfterNode( struct Node **head, struct Node **tail, int data, int newData );
+void insertBeforeNode( struct Node **head, struct Node **tail, int data, int newData );
 void printList( struct Node *head, struct Node *tail );
 void printListReversed( struct Node *tail );
 
@@ -57,6 +58,18 @@ int main()
 
   printf("--> Inserting value 120 after value 80\n");
   insertAfterNode (&head, &tail, 80, 120 );
+  printList( head, tail );
+
+  printf("--> Inserting value 250 after value 10\n");
+  insertAfterNode (&head, &tail, 10, 250 );
+  printList( head, tail );
+
+  printf("--> Inserting value 110 before value 20\n");
+  insertBeforeNode (&head, &tail, 20, 110 );
+  printList( head, tail );
+
+  printf("--> Inserting value 190 before value 50\n");
+  insertBeforeNode (&head, &tail, 50, 190 );
   printList( head, tail );
 
   printf("--> Printing list values in reversed order\n");
@@ -145,6 +158,50 @@ void insertAfterNode( struct Node **head, struct Node **tail, int data, int newD
       if ( tempNode == (*tail) )
       {
         (*tail) = newNode;
+      }
+
+      return;
+    }
+    else
+    {
+    tempNode = tempNode->next;
+    }
+
+  } while( tempNode != *head );
+
+  printf("The value: %d is not in the list\n", data);
+}
+
+
+void insertBeforeNode( struct Node **head, struct Node **tail, int data, int newData )
+{
+  ++depth;
+
+  struct Node *newNode  = (struct Node *)malloc( sizeof( struct Node ) );
+  struct Node *tempNode = *head;
+
+  int value;
+
+  do
+  {
+    value = tempNode->data;
+
+    if ( value == data )
+    {
+      newNode->prev = tempNode->prev;
+      newNode->next = tempNode;
+      newNode->data = newData;
+
+      tempNode->prev->next = newNode;
+      tempNode->prev       = newNode;
+
+      //
+      // If tempNode is the tail, i.e., head->prev, then
+      // we need to update it as well.
+      //
+      if ( tempNode == (*head) )
+      {
+        (*head) = newNode;
       }
 
       return;
